@@ -10,6 +10,34 @@
             overflow: hidden; /* Impede a rolagem da página */
             background: #58007a;
         }
+        
+        .capa1 {
+            background-image: url("imagens/capa.png");
+            background-size: cover;
+            z-index: 100;
+            position: absolute;
+            top: 1%;
+            left: 30%;
+            width: 40%; /* Ocupa toda a largura da tela */
+            height: 98%; /* Ocupa toda a altura da tela */
+        }
+
+        .capa2 {
+            background: #58007a;
+            background-size: 50%;         
+            z-index: 90;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%; /* Ocupa toda a largura da tela */
+            height: 100%; /* Ocupa toda a altura da tela */ 
+        }
+
+        .girls {
+            font-size: 24px;
+            text-align: center;
+            color: #fff;
+        }
 
         .container {
             display: flex;
@@ -52,9 +80,18 @@
             88% { transform: translate(-800px); scale: 0.5; z-index: -1; }
             100% { transform: translate(-800px); scale: 0.5; z-index: -1; }
         }
+
+        @keyframes slideUp {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(-100%); opacity: 0; }
+        }
+
     </style>
 </head>
 <body>
+    <div class="capa1"></div>
+    <div class="capa2"></div>
+    <div class="girls"><h1>Mulheres na ciência</h1></div>
     <div class="container">
         <div class="video one">
             <video controls poster="imagens/Hipátia.png" src="video/VID-20240823-WA0021.mp4" type="video/mp4"></video>
@@ -86,6 +123,13 @@
     </div>
 
     <script>
+
+                // Aguarda 2 segundos e depois inicia a animação
+        setTimeout(() => {
+            document.querySelector('.capa1').style.animation = 'slideUp 3s forwards ease-in';
+            document.querySelector('.capa2').style.animation = 'slideUp 3s forwards ease-in';
+        }, 2000);
+
         let isPaused = false;  // Variável para controlar o estado de pausa
 
         document.addEventListener('keydown', function(event) {
