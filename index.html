@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden; /* Impede a rolagem da página */
+            background: #58007a;
+        }
+
+        .container {
+            display: flex;
+            justify-content: center; /* Alinha os itens à esquerda */
+            align-items: center;
+            position: relative;
+            height: 100vh; /* Altura total da tela */
+            width: 80vw; /* Largura total da tela */
+        }
+
+        .video {
+            position: absolute;
+            border-radius: 10px;
+            animation: carousel 18s infinite ease-in-out; /* Duração da animação aumentada */
+            width: 350px; /* Largura do vídeo */
+            height: 350px; /* Altura do vídeo */
+            overflow: hidden;
+            transition: transform 0.3s, width 0.3s, height 0.3s; /* Transição suave */
+        }
+
+        .one { filter: hue-rotate(0); animation-delay: 0s; }
+        .two { filter: hue-rotate(0); animation-delay: -2s; }
+        .three { filter: hue-rotate(0); animation-delay: -4s; }
+        .four { filter: hue-rotate(0); animation-delay: -6s; }
+        .five { filter: hue-rotate(0); animation-delay: -8s; }
+        .six { filter: hue-rotate(0); animation-delay: -10s; }
+        .seven { filter: hue-rotate(0); animation-delay: -12s; }
+        .eight { filter: hue-rotate(0); animation-delay: -14s; }
+        .nine { filter: hue-rotate(0); animation-delay: -16s; }
+
+        @keyframes carousel {
+            0% { transform: translate(-800px); scale: 0.5; z-index: -1; }
+            11% { transform: translate(-400px); scale: 1; z-index: 1; }
+            22% { transform: translate(0px); scale: 1; z-index: 1; }
+            33% { transform: translate(400px); scale: 1; z-index: 1; }
+            44% { transform: translate(800px); scale: 1; z-index: -1; }
+            55% { transform: translate(400px); scale: 0.5; z-index: -1; }
+            66% { transform: translate(0px); scale: 0.5; z-index: -1; }
+            77% { transform: translate(-400px); scale: 0.5; z-index: -1; }
+            88% { transform: translate(-800px); scale: 0.5; z-index: -1; }
+            100% { transform: translate(-800px); scale: 0.5; z-index: -1; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="video one">
+            <video controls poster="imagens/Hipátia.png" src="video/VID-20240823-WA0021.mp4" type="video/mp4"></video>
+        </div>
+        <div class="video two">
+            <video controls poster="imagens/jaqueline.png" src="video/VID-20240823-WA0020.mp4" type="video/mp4"></video>
+        </div>
+        <div class="video three">
+            <video controls poster="imagens/Sônia.png" src="video/VID-20240823-WA0019.mp4" type="video/mp4"></video>
+        </div>
+        <div class="video four">
+            <video controls poster="imagens/Carol.png" src="video/VID-20240915-WA0018.mp4" type="video/mp4"></video>
+        </div>
+        <div class="video five">
+            <video controls poster="imagens/rosalind.png" src="video/VID-20240915-WA0017.mp4" type="video/mp4"></video>
+        </div>
+        <div class="video six">
+            <video controls poster="imagens/ada.png" src="video/VID-20240915-WA0016.mp4" type="video/mp4"></video>
+        </div>
+        <div class="video seven">
+            <video controls poster="imagens/maria.png" src="video/VID-20240915-WA0015.mp4" type="video/mp4"></video>
+        </div>
+        <div class="video eight">
+            <video controls poster="imagens/elisa.jpg" src="video/VID-20240915-WA0014.mp4" type="video/mp4"></video>
+        </div>
+        <div class="video nine">
+            <video controls poster="imagens/Natalia.jpg" src="video/VID-20240915-WA0013.mp4" type="video/mp4"></video>
+        </div>
+    </div>
+
+    <script>
+        let isPaused = false;  // Variável para controlar o estado de pausa
+
+        document.addEventListener('keydown', function(event) {
+            const videos = document.querySelectorAll('.video');
+
+            // Verifica se a barra de espaço foi pressionada
+            if (event.code === 'Space' && !isPaused) {
+                isPaused = true;
+
+                // Remove a animação de todos os itens
+                videos.forEach(video => {
+                    video.style.animation = 'none';
+                });
+                
+                // Seleciona um item aleatório
+                const randomIndex = Math.floor(Math.random() * videos.length);
+                const selectedVideo = videos[randomIndex].querySelector('video');
+
+                // Centraliza o item selecionado e aumenta seu tamanho
+                videos[randomIndex].style.transform = 'scale(1.5) translate(35%, 20%)'; // Aumenta levemente o vídeo
+                videos[randomIndex].style.zIndex = '1'; // Traz para frente
+                videos[randomIndex].style.width = '100vw';  // 100% da largura da tela
+                videos[randomIndex].style.height = '100vh'; // 100% da altura da tela
+                
+                // Toca o vídeo selecionado
+                selectedVideo.play();
+
+                // Reduz os outros itens
+                videos.forEach((video, index) => {
+                    if (index !== randomIndex) {
+                        video.style.transform = 'translate(100vw) scale(0)'; // Saem da tela
+                        video.style.zIndex = '-1';
+                    } else {
+                        video.style.transition = 'transform 1s'; // Adiciona uma transição suave
+                    }
+                });
+
+                // Adiciona evento de finalização
+                selectedVideo.onended = function() {
+                    restoreVideos(videos);
+                };
+            }
+
+            // Verifica se a tecla "Escape" foi pressionada
+            if (event.code === 'Escape' && isPaused) {
+                isPaused = false;
+                restoreVideos(videos);
+            }
+        });
+
+        function restoreVideos(videos) {
+            // Restaura animação para todos os vídeos
+            videos.forEach(video => {
+                video.style.animation = '';
+                video.style.transform = ''; // Restaura a posição original
+                video.style.width = '350px'; // Restaura a largura original
+                video.style.height = '350px'; // Restaura a altura original
+                video.style.zIndex = ''; // Restaura o z-index original
+
+                // Para todos os vídeos
+                const videoElement = video.querySelector('video');
+                videoElement.pause();
+                videoElement.currentTime = 0; // Reseta o tempo do vídeo
+                videoElement.load(); // Carrega o vídeo novamente
+            });
+
+            // Restaura a animação para todos os vídeos
+            videos.forEach(video => {
+                video.style.animation = ''; // Restaura a animação
+            });
+        }
+    </script>
+</body>
+</html>
