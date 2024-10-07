@@ -17,23 +17,11 @@
             z-index: 100;
             position: absolute;
             top: 1%;
-            left: 30%;
-            width: 40%; /* Ocupa toda a largura da tela */
-            height: 98%; /* Ocupa toda a altura da tela */
-        }
-
-        .capa2 {
-            background: #58007a;
-            background-size: 50%;         
-            z-index: 90;
-            position: absolute;
-            top: 0;
             left: 0;
             width: 100%; /* Ocupa toda a largura da tela */
-            height: 100%; /* Ocupa toda a altura da tela */ 
-            border-bottom-left-radius: 250px;
-            border-bottom-right-radius: 250px;
+            height: 100%; /* Ocupa toda a altura da tela */
         }
+
 
 
         .container {
@@ -90,31 +78,31 @@
     <div class="capa2"></div>
     <div class="container">
         <div class="video one">
-            <video controls poster="imagens/Hipátia.png" src="videos/VID-20240823-WA0021.mp4" type="video/mp4"></video>
+            <video controls poster="imagens/Hipátia.png" src="video/VID-20240823-WA0021.mp4" type="video/mp4"></video>
         </div>
         <div class="video two">
-            <video controls poster="imagens/jaqueline.png" src="videos/VID-20240823-WA0020.mp4" type="video/mp4"></video>
+            <video controls poster="imagens/jaqueline.png" src="video/VID-20240823-WA0020.mp4" type="video/mp4"></video>
         </div>
         <div class="video three">
-            <video controls poster="imagens/Sônia.png" src="videos/VID-20240823-WA0019.mp4" type="video/mp4"></video>
+            <video controls poster="imagens/Sônia.png" src="video/VID-20240823-WA0019.mp4" type="video/mp4"></video>
         </div>
         <div class="video four">
-            <video controls poster="imagens/Carol.png" src="videos/VID-20240915-WA0018.mp4" type="video/mp4"></video>
+            <video controls poster="imagens/Carol.png" src="video/VID-20240915-WA0018.mp4" type="video/mp4"></video>
         </div>
         <div class="video five">
-            <video controls poster="imagens/rosalind.png" src="videos/VID-20240915-WA0017.mp4" type="video/mp4"></video>
+            <video controls poster="imagens/rosalind.png" src="video/VID-20240915-WA0017.mp4" type="video/mp4"></video>
         </div>
         <div class="video six">
-            <video controls poster="imagens/ada.png" src="videos/VID-20240915-WA0016.mp4" type="video/mp4"></video>
+            <video controls poster="imagens/ada.png" src="video/VID-20240915-WA0016.mp4" type="video/mp4"></video>
         </div>
         <div class="video seven">
-            <video controls poster="imagens/maria.png" src="videos/VID-20240915-WA0015.mp4" type="video/mp4"></video>
+            <video controls poster="imagens/maria.png" src="video/VID-20240915-WA0015.mp4" type="video/mp4"></video>
         </div>
         <div class="video eight">
-            <video controls poster="imagens/elisa.jpg" src="videos/VID-20240915-WA0014.mp4" type="video/mp4"></video>
+            <video controls poster="imagens/elisa.jpg" src="video/VID-20240915-WA0014.mp4" type="video/mp4"></video>
         </div>
         <div class="video nine">
-            <video controls poster="imagens/Natalia.jpg" src="videos/VID-20240915-WA0013.mp4" type="video/mp4"></video>
+            <video controls poster="imagens/Natalia.jpg" src="video/VID-20240915-WA0013.mp4" type="video/mp4"></video>
         </div>
     </div>
 
@@ -122,8 +110,8 @@
 
                 // Aguarda 2 segundos e depois inicia a animação
         setTimeout(() => {
-            document.querySelector('.capa1').style.animation = 'slideUp 3s forwards ease-in';
-            document.querySelector('.capa2').style.animation = 'slideUp 3s forwards ease-in';
+            document.querySelector('.capa1').style.animation = 'slideUp 10s forwards ease-in';
+            document.querySelector('.capa2').style.animation = 'slideUp 10s forwards ease-in';
         }, 2000);
 
         let isPaused = false;  // Variável para controlar o estado de pausa
